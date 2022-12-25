@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./imgs/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>target shooting</title>
+</head>
+    <style>
+        body{
+            background-image: url('./imgs/home.jpg');
+            background-size:  auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        form{
+            background-color:#F5060E;
+            padding: 1.5rem;
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+
+        }
+    
+
+
+.input{
+    background-color: transparent;
+    border-bottom: 1px solid ;
+    transition: border-top 2s ease ;
+    padding: .5rem;
+    
+}
+
+
+.exit{
+    display: none;
+}
+
+
+.group{ position: relative; }
+
+.name{
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    transition: all .4s ;
+}
+
+.input:focus~.name, .input:valid~.name{
+    transform: translateY(-20px);
+    background-color: #e0e0e0;
+    padding: 0  4px 0 4px;
+}
+  
+
+    </style>
+
+<body>
+    <form   class="card" onsubmit="login(event)">
+        <div class="group">
+            <input type="text" 
+            name="userName" class="input" 
+             
+            required autocomplete="off">
+            <label for="" class="name">Name</label>
+        </div>
+        <button type="submit" class="button">
+             <span class="button_top" >Start</span>
+            
+          </button>
+        
+        <!-- location.href ='https://pablomonteserin.com'; -->
+    </form>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> 
+       
+    <lottie-player class="exit" src="https://assets8.lottiefiles.com/packages/lf20_VSBhlA7ElW.json"  background="transparent"  speed="1"  style="width: 350px; height: 500px;"   loop autoplay></lottie-player> 
+    
+
+        
+
+
+
+    <script src="./JS/index.js"></script>
+</body>
+</html>

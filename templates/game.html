@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./imgs/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>target shooting</title>
+</head>
+    <style>
+        *{
+            cursor: url("data:image/svg+xml,%3Csvg height='10' width='10' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' fill='black' r='4'/%3E%3C/svg%3E") 3 3, auto;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        body{
+            background-image: url('./back.jpg');
+            background-size: cover;
+            backdrop-filter: blur(2px);
+        }
+
+        canvas{
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1{
+            position: absolute;
+            z-index: 100;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+<body id="body">
+
+    <h1 id="puntos" >0</h1>
+
+    <canvas  ></canvas>
+    
+    <script>
+        let pantalla = document.querySelector("canvas");
+        let puntos = document.getElementById("puntos");
+        let body = document.querySelector("body");
+        pantalla.width = window.innerWidth
+        pantalla.height = window.innerHeight
+        let pincel = pantalla.getContext("2d");
+        let xX = 0
+        let yY = 0
+
+        function ARC(x, y, size, color){
+            pincel.fillStyle = color;
+            pincel.arc(x, y, size,0, 2 * Math.PI );
+            pincel.fill();
+            pincel.stroke();
+            pincel.beginPath();
+        }
+
+        function X(){  return Math.floor(Math.random()*(pantalla.width))  }
+        function Y(){  return Math.floor(Math.random()*(pantalla.height))  }
+        
+
+        function play(){
+            pincel.clearRect(0, 0, pantalla.width, pantalla.height);
+
+             xX = X();
+             yY = Y();
+
+            ARC(xX, yY, 30, "red");
+            ARC(xX, yY, 20, "white");
+            ARC(xX, yY, 10, "red");
+            puntos.innerText= parseInt(puntos.textContent) - 1;
+        }
+
+        function speed(){
+            let i = parseInt(puntos.textContent);
+            
+            if(i > 100){
+                return 100
+            }else{
+                return 2000
+            }
+        }
+
+      
+        setInterval(play, 1000)
+ 
+
+         pantalla.addEventListener('click', (e)=>{
+
+            console.log("x",e.pageX, "y",e.pageY)
+
+            if(e.pageX > xX-35 && e.pageX < xX+35 ){
+
+                if(e.pageX > xX-20 && e.pageX < xX+20  ){
+                    if(e.pageY > yY-20 && e.pageY < yY+20){
+                    puntos.innerText= parseInt(puntos.textContent) + 10;
+                    }
+                    
+                }else{
+                    puntos.innerText= parseInt(puntos.textContent) + 1;
+                }
+             
+            }
+         })
+    </script>
+</body>
+</html>
